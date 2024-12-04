@@ -1,20 +1,18 @@
 package com.example.studentManagementSystem.controller;
 import com.example.studentManagementSystem.model.Student;
 import com.example.studentManagementSystem.service.IStudentService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @RestController
 @RequestMapping("/students")
+@RequiredArgsConstructor
 public class StudentController {
-    private final IStudentService studentService;
 
-    public StudentController(IStudentService studentService) {
-        this.studentService = studentService;
-    }
+    private final IStudentService studentService;
 
     // Get All Students Endpoint
     @GetMapping
@@ -37,7 +35,7 @@ public class StudentController {
         studentService.deleteStudent(id);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/student/{id}")
     public Student getStudentById(@PathVariable Long id) {
         return studentService.getStudentById(id);
     }

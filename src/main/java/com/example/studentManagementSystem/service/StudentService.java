@@ -3,16 +3,15 @@ import com.example.studentManagementSystem.exception.StudentAlreadyExistsExcepti
 import com.example.studentManagementSystem.exception.StudentNotFoundException;
 import com.example.studentManagementSystem.model.Student;
 import com.example.studentManagementSystem.repository.StudentRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class StudentService implements IStudentService {
 
     private final StudentRepository studentRepository;
-    public StudentService(StudentRepository studentRepository){
-        this.studentRepository = studentRepository;
-    }
 
     @Override
     public List<Student> getStudents() {
@@ -38,7 +37,6 @@ public class StudentService implements IStudentService {
         }).orElseThrow(() -> new StudentNotFoundException("No student with the id: " + id + " found"));
     }
 
-
     @Override
     public Student getStudentById(Long id) {
         return studentRepository.findById(id)
@@ -48,7 +46,7 @@ public class StudentService implements IStudentService {
     @Override
     public void deleteStudent(Long id) {
         if(!studentRepository.existsById(id)) {
-            throw new StudentNotFoundException("Student not found!");
+            throw new StudentNotFoundException("Sorry, student not found!");
         }
         studentRepository.deleteById(id);
     }

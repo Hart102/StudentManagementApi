@@ -1,6 +1,5 @@
 package com.example.studentManagementSystem.service;
 import com.example.studentManagementSystem.model.Student;
-
 import java.util.List;
 
 public interface IStudentService {
